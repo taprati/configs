@@ -2,8 +2,8 @@
 " Tyler's Vim Settings
 "==========================================================
 
-syntax on
-set mouse=a
+syntax on " turn color syntax on 
+set mouse=a " Enable mouse in all modes
 
 "Key bindings=============================================
 "nnoremap ; : 

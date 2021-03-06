@@ -3,6 +3,7 @@
 #=========================================
 
 # Optional fun opening Messages
+# makes a colored moose
 #figlet "Hello Tyler" | lolcat
 #fortune -s | cowsay -f moose | lolcat
 
@@ -12,7 +13,6 @@ set -o vi
 # Makes the ls command show more 
 alias ls='ls -hG'
 alias grep='grep --color=auto'
-
 
 # Makes safer versions of the default commands.
 # Will ask permissions before overwriting files.
@@ -49,4 +49,7 @@ alias tmux="tmux -2"
 # Alias for moving to desktop
 alias gtd="cd ~/Desktop"
 
+# Cargo for rust
 source "$HOME/.cargo/env"
+
+
