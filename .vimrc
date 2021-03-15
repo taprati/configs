@@ -4,6 +4,8 @@
 
 syntax on " turn color syntax on 
 set mouse=a " Enable mouse in all modes
+set scrolloff=5 " starts scrolling earlier
+set noerrorbells " does not make a sound
 
 "Key bindings=============================================
 "nnoremap ; : 
@@ -12,11 +14,14 @@ imap kj <Esc>
 map <leader>s :!clear && shellcheck %<CR> " shellcheck scripts from vim
 
 " Indenting Preferences=====================================
-set autoindent
+set autoindent " indent to above line
+set smartindent " indent to syntax of code
 
 " Formatting Preferences=====================================
 set number " Shows line numbers
 set textwidth=80
+set colorcolumn=80 " makes line at 80 chars width
+" set signcolumn=yes " extra col for errors
 
 " Spaces and Tabs============================================
 set tabstop=4 " Number of spaces when viewing
@@ -81,8 +86,8 @@ endfunction
 "Searching Preferences=======================================
 set hlsearch " Highlight search matches
 set incsearch " Searches progressively
-set ignorecase
-set smartcase
+set ignorecase " ignores case when searching
+set smartcase " uses case when caps are used
 
 " Terminal Settings=======================================
 set termwinsize=10x0 " set terminal default size
