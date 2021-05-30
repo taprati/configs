@@ -12,6 +12,8 @@ set -o vi
 
 # Makes the ls command show more 
 alias ls='ls -hG'
+
+# Color grep matches
 alias grep='grep --color=auto'
 
 # Makes safer versions of the default commands.
@@ -22,6 +24,7 @@ alias cp='cp -i'
 
 # Extend the program search PATH and add the ~/bin folder.
 export PATH=~/bin:$PATH
+export PATH=$PATH:~/Desktop/Notes
 
 # Makes the prompt
 export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
@@ -43,11 +46,26 @@ export LESS_TERMCAP_so=$'\E[01;42;30m' # begin the info box
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+# History
+# Save all histories
+export HISTFILESIZE=1000000
+export HISTSIZE=1000000
+# don't duplicate lines or empty spaces in history
+export HISTCONTROL=ignoreboth
+# combine multiline commands in history
+shopt -s cmdhist
+# Merge session histories
+shopt -s histappend
+
 # Fix tmux colors
 alias tmux="tmux -2"
 
-# Alias for moving to desktop
+# Aliases
 alias gtd="cd ~/Desktop"
+alias rust="cd ~/Desktop/Programming/Rust"
+alias mutt="neomutt"
+alias cl="clear"
+alias top="htop"
 
 # Cargo for rust
 source "$HOME/.cargo/env"

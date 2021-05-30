@@ -1,17 +1,21 @@
-"==========================================================
-" Tyler's Vim Settings
-"==========================================================
+"=======================
+" Tyler's Vim Settings =
+"=======================
 
 syntax on " turn color syntax on 
 set mouse=a " Enable mouse in all modes
 set scrolloff=5 " starts scrolling earlier
 set noerrorbells " does not make a sound
 
-"Key bindings=============================================
-"nnoremap ; : 
-imap jk <Esc>
-imap kj <Esc>
-map <leader>s :!clear && shellcheck %<CR> " shellcheck scripts from vim
+" Key bindings=============================================
+let mapleader =" "
+" Shellcheck
+nnoremap <leader>s :!clear && shellcheck %<CR>
+"copy paste to clipboard shortcuts
+vnoremap <C-c> "*y
+map <C-v> "*p 
+"Fuzzy finder
+nnoremap <C-f> :FZF<CR>
 
 " Indenting Preferences=====================================
 set autoindent " indent to above line
@@ -32,71 +36,48 @@ set expandtab " tabs are spaces
 " Window splitting and movement =============================
 set splitbelow splitright " set window split defaults
 
-" If the filetype is Makefile then we need to use tabs
+" If Makefile then we need to use tabs
 if has("autocmd")
     autocmd FileType make   set noexpandtab
 endif
 
-"UI configurations =========================================
+" UI configurations =========================================
 set cursorline " highlights the line you are on
 set showmatch " Highlights matching bracket or parenthesis
 "set noshowmode " Hides modes if using another status bar
 
-"Status line ===============================================
+" Status line ===============================================
 set ls=2 " Status bar always on
 set laststatus=2
+source .vim/status.vimrc
 
-set statusline=
-set statusline+=%{StatuslineMode()}
-set statusline+=\ 
-set statusline+=|
-set statusline+=\ 
-set statusline+=%f
-set statusline+=\ 
-set statusline+=%m
-set statusline+=%=
-set statusline+=%y
-set statusline+=\ 
-set statusline+=|
-set statusline+=\ 
-set statusline+=%{strftime(\"%H:%M\")}
-set statusline+=|
-
-function! StatuslineMode()
-  let l:mode=mode()
-    if l:mode==#"n"
-        return "NORMAL"
-    elseif l:mode==?"v"
-        return "VISUAL"
-    elseif l:mode==#"i"
-        return "INSERT"
-    elseif l:mode==#"R"
-        return "REPLACE"
-    elseif l:mode==?"s"
-        return "SELECT"
-    elseif l:mode==#"t"
-        return "TERMINAL"
-    elseif l:mode==#"c"
-        return "COMMAND"
-    elseif l:mode==#"!"
-        return "SHELL"
-    endif
-endfunction
-
-"Searching Preferences=======================================
+" Searching Preferences=======================================
 set hlsearch " Highlight search matches
 set incsearch " Searches progressively
 set ignorecase " ignores case when searching
 set smartcase " uses case when caps are used
 
+" Notes commands ===========================================
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ -i
+endif
+command! -nargs=1 Ngrep grep "<args>" ~/Desktop/Notes
+nnoremap <leader>[ :Ngrep 
+
 " Terminal Settings=======================================
-set termwinsize=10x0 " set terminal default size
+set termwinsize=12x0 " set terminal default size
 cabbrev bterm bo term "open term below with bterm
+nnoremap <leader>t :term <CR>
 
-"Color scheme settings=====================================
+" Color scheme ===========================================
 set t_Co=16
-set background=light
+set background=dark
 colorscheme solarized8
-"colorscheme peachpuff
+"colorscheme slate
 
+" Plugins ==========================================
+call plug#begin('~/.vim/plugged')
+    Plug 'junegunn/fzf'
+    Plug 'bioSyntax/bioSyntax-vim'
+call plug#end()
 
