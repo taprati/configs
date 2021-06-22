@@ -15,7 +15,11 @@ nnoremap <leader>s :!clear && shellcheck %<CR>
 vnoremap <C-c> "*y
 map <C-v> "*p 
 "Fuzzy finder
-nnoremap <C-f> :FZF<CR>
+nnoremap <leader>f :FZF<CR>
+" Open vimrc in split
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" Source vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Indenting Preferences=====================================
 set autoindent " indent to above line
@@ -25,6 +29,7 @@ set smartindent " indent to syntax of code
 set number " Shows line numbers
 set textwidth=80
 set colorcolumn=80 " makes line at 80 chars width
+set wrap " Soft wrap text
 " set signcolumn=yes " extra col for errors
 
 " Spaces and Tabs============================================
@@ -36,11 +41,6 @@ set expandtab " tabs are spaces
 " Window splitting and movement =============================
 set splitbelow splitright " set window split defaults
 
-" If Makefile then we need to use tabs
-if has("autocmd")
-    autocmd FileType make   set noexpandtab
-endif
-
 " UI configurations =========================================
 set cursorline " highlights the line you are on
 set showmatch " Highlights matching bracket or parenthesis
@@ -49,7 +49,31 @@ set showmatch " Highlights matching bracket or parenthesis
 " Status line ===============================================
 set ls=2 " Status bar always on
 set laststatus=2
-source .vim/status.vimrc
+
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+set statusline=
+set statusline+=%#WildMenu#
+set statusline+=\ %f 
+set statusline+=\ %y 
+set statusline+=\  
+set statusline+=%#StatusLineTerm#
+set statusline+=\ %#ErrorMsg#
+set statusline+=%m
+set statusline+=%#StatusLineTerm#
+set statusline+=%=
+set statusline+=%#Search#
+set statusline+=\ %l/%L
+set statusline+=\ %#IncSearch#
+set statusline+=%{StatuslineGit()}
+set statusline+=\  
 
 " Searching Preferences=======================================
 set hlsearch " Highlight search matches
@@ -66,18 +90,36 @@ nnoremap <leader>[ :Ngrep
 
 " Terminal Settings=======================================
 set termwinsize=12x0 " set terminal default size
-cabbrev bterm bo term "open term below with bterm
 nnoremap <leader>t :term <CR>
 
 " Color scheme ===========================================
 set t_Co=16
-set background=dark
+set background=light
 colorscheme solarized8
-"colorscheme slate
+
+" File Specific Options =================================
+" If Makefile
+augroup makefile
+    autocmd FileType make   set noexpandtab
+augroup END
+
+" If Markdown
+augroup markdown
+    autocmd FileType markdown   set wrap
+    "autocmd FileType markdown   :Goyo <CR>
+augroup END
 
 " Plugins ==========================================
 call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf'
+    Plug 'junegunn/goyo.vim'
     Plug 'bioSyntax/bioSyntax-vim'
 call plug#end()
+
+nnoremap <leader>g :Goyo<CR>
+nnoremap <leader>gg :Goyo!<CR>
+
+" Abbreviations ===========================
+iabbrev @@ tyleraprati@gmail.com
+iabbrev waht what
 
