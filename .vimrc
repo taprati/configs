@@ -6,16 +6,22 @@ syntax on " turn color syntax on
 set mouse=a " Enable mouse in all modes
 set scrolloff=5 " starts scrolling earlier
 set noerrorbells " does not make a sound
+set backspace=indent,eol,start " makes backspace function normal
 
 " Key bindings=============================================
 let mapleader =" "
+
 " Shellcheck
 nnoremap <leader>s :!clear && shellcheck %<CR>
+
 "copy paste to clipboard shortcuts
-vnoremap <C-c> "*y
-map <C-v> "*p 
-"Fuzzy finder
-nnoremap <leader>f :FZF<CR>
+if has('clipboard')
+    set clipboard=unnamed
+else
+    vnoremap <C-c> "*y
+    nnoremap <C-v> "*p
+endif
+
 " Open vimrc in split
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " Source vimrc
@@ -30,7 +36,8 @@ set number " Shows line numbers
 set textwidth=80
 set colorcolumn=80 " makes line at 80 chars width
 set wrap " Soft wrap text
-" set signcolumn=yes " extra col for errors
+"set spell " Spell check
+set signcolumn=yes " extra col for errors
 
 " Spaces and Tabs============================================
 set tabstop=4 " Number of spaces when viewing
@@ -50,15 +57,6 @@ set showmatch " Highlights matching bracket or parenthesis
 set ls=2 " Status bar always on
 set laststatus=2
 
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
-
 set statusline=
 set statusline+=%#WildMenu#
 set statusline+=\ %f 
@@ -72,7 +70,6 @@ set statusline+=%=
 set statusline+=%#Search#
 set statusline+=\ %l/%L
 set statusline+=\ %#IncSearch#
-set statusline+=%{StatuslineGit()}
 set statusline+=\  
 
 " Searching Preferences=======================================
@@ -106,14 +103,14 @@ augroup END
 " If Markdown
 augroup markdown
     autocmd FileType markdown   set wrap
-    "autocmd FileType markdown   :Goyo <CR>
 augroup END
 
 " Plugins ==========================================
 call plug#begin('~/.vim/plugged')
-    Plug 'junegunn/fzf'
     Plug 'junegunn/goyo.vim'
-    Plug 'bioSyntax/bioSyntax-vim'
+"    Plug 'bioSyntax/bioSyntax-vim'
+    Plug 'jupyter-vim/jupyter-vim'
+    Plug 'cjrh/vim-conda'
 call plug#end()
 
 nnoremap <leader>g :Goyo<CR>
@@ -122,4 +119,21 @@ nnoremap <leader>gg :Goyo!<CR>
 " Abbreviations ===========================
 iabbrev @@ tyleraprati@gmail.com
 iabbrev waht what
+
+" Map local leader to single backslash
+let maplocalleader = "\\"
+
+" vim conda setting
+nnoremap <leader>ce :CondaChangeEnv<CR>
+let g:conda_startup_msg_suppress = 1
+let g:conda_startup_wrn_suppress = 1
+
+" jupyter vim bindings
+let g:jupyter_mapkeys = 0
+nnoremap <leader>jc :JupyterConnect<CR>
+nnoremap <leader>r :JupyterRunFile<CR>
+nnoremap <leader>l :JupyterSendRange<CR>
+nnoremap <leader>c :JupyterSendCell<CR>
+nnoremap <leader>b i## Title<CR><CR>##
+
 

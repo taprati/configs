@@ -62,7 +62,7 @@ alias tmux="tmux -2"
 
 # Aliases
 alias gtd="cd ~/Desktop"
-alias notes="cd ~/Desktop/Notes"
+alias notes="lf ~/Desktop/Notes"
 alias rust="cd ~/Desktop/Programming/Rust"
 alias mutt="neomutt"
 alias cl="clear"
