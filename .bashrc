@@ -30,10 +30,6 @@ export PATH=$PATH:~/Desktop/Notes
 export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# This is required for Entrez Direct to work.
-# Disables strict checking of an encryption page.
-export PERL_LWP_SSL_VERIFY_HOSTNAME=0
-
 # This is necessary for the sort to work correctly.
 export LC_ALL=C
 
@@ -63,12 +59,6 @@ alias tmux="tmux -2"
 # Aliases
 alias gtd="cd ~/Desktop"
 alias notes="lf ~/Desktop/Notes"
-alias rust="cd ~/Desktop/Programming/Rust"
 alias mutt="neomutt"
 alias cl="clear"
-alias top="htop"
-
-# Cargo for rust
-source "$HOME/.cargo/env"
-
 
