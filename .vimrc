@@ -59,19 +59,21 @@ set laststatus=2
 
 set statusline=
 set statusline+=%#WildMenu#
+set statusline+=\  
 set statusline+=\ %f 
 set statusline+=\ %y 
 set statusline+=\  
-set statusline+=%#StatusLineTerm#
+set statusline+=%#DiffChange#
 set statusline+=\ %#ErrorMsg#
 set statusline+=%m
-set statusline+=%#StatusLineTerm#
+set statusline+=%#DiffChange#
 set statusline+=%=
-set statusline+=%#Search#
+set statusline+=%#IncSearch#
+set statusline+=\  
 set statusline+=\ %l/%L
 set statusline+=\ %#IncSearch#
 set statusline+=\  
-
+ 
 " Searching Preferences=======================================
 set hlsearch " Highlight search matches
 set incsearch " Searches progressively
@@ -90,9 +92,8 @@ set termwinsize=12x0 " set terminal default size
 nnoremap <leader>t :term <CR>
 
 " Color scheme ===========================================
-set t_Co=16
-set background=light
-colorscheme solarized8
+set background=dark
+colorscheme gruvbox
 
 " File Specific Options =================================
 " If Makefile
@@ -106,15 +107,13 @@ augroup markdown
 augroup END
 
 " Plugins ==========================================
-call plug#begin('~/.vim/plugged')
-    Plug 'junegunn/goyo.vim'
+"call plug#begin('~/.vim/plugged')
+"    Plug 'junegunn/goyo.vim'
 "    Plug 'bioSyntax/bioSyntax-vim'
-    Plug 'jupyter-vim/jupyter-vim'
-    Plug 'cjrh/vim-conda'
-call plug#end()
+"call plug#end()
 
-nnoremap <leader>g :Goyo<CR>
-nnoremap <leader>gg :Goyo!<CR>
+"nnoremap <leader>g :Goyo<CR>
+"nnoremap <leader>gg :Goyo!<CR>
 
 " Abbreviations ===========================
 iabbrev @@ tyleraprati@gmail.com
@@ -122,18 +121,4 @@ iabbrev waht what
 
 " Map local leader to single backslash
 let maplocalleader = "\\"
-
-" vim conda setting
-nnoremap <leader>ce :CondaChangeEnv<CR>
-let g:conda_startup_msg_suppress = 1
-let g:conda_startup_wrn_suppress = 1
-
-" jupyter vim bindings
-let g:jupyter_mapkeys = 0
-nnoremap <leader>jc :JupyterConnect<CR>
-nnoremap <leader>r :JupyterRunFile<CR>
-nnoremap <leader>l :JupyterSendRange<CR>
-nnoremap <leader>c :JupyterSendCell<CR>
-nnoremap <leader>b i## Title<CR><CR>##
-
 
