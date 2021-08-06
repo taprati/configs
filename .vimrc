@@ -35,7 +35,7 @@ set smartindent " indent to syntax of code
 set number " Shows line numbers
 set textwidth=80
 set colorcolumn=80 " makes line at 80 chars width
-set wrap " Soft wrap text
+"set wrap " Soft wrap text
 "set spell " Spell check
 set signcolumn=yes " extra col for errors
 
@@ -103,7 +103,8 @@ augroup END
 
 " If Markdown
 augroup markdown
-    autocmd FileType markdown   set wrap
+"    autocmd FileType markdown   set wrap
+    autocmd FileType markdown   set colorcolumn=0
 augroup END
 
 " Plugins ==========================================
