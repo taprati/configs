@@ -33,11 +33,11 @@ set smartindent " indent to syntax of code
 
 " Formatting Preferences=====================================
 set number " Shows line numbers
-set textwidth=80
+"set textwidth=80
 set colorcolumn=80 " makes line at 80 chars width
 "set wrap " Soft wrap text
 "set spell " Spell check
-set signcolumn=yes " extra col for errors
+"set signcolumn=yes " extra col for errors
 
 " Spaces and Tabs============================================
 set tabstop=4 " Number of spaces when viewing
@@ -117,7 +117,6 @@ augroup END
 "nnoremap <leader>gg :Goyo!<CR>
 
 " Abbreviations ===========================
-iabbrev @@ tyleraprati@gmail.com
 iabbrev waht what
 
 " Map local leader to single backslash

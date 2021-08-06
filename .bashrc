@@ -9,21 +9,6 @@
 # Activate vim mode with esc
 set -o vi
 
-# Makes the ls command show more 
-alias ls='ls -hG'
-
-# Color grep matches by default
-alias grep='grep --color=auto'
-
-# Makes safer versions of the default commands.
-# Will ask permissions before overwriting files.
-alias rm='rm -i'
-alias mv='mv -i'
-alias cp='cp -i'
-
-# Extend the PATH and add ~/bin
-export PATH=~/bin:$PATH
-
 # Prompt 
 export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
 export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -41,35 +26,48 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # History ==============================
-# Save all histories
+# Save all histories, ignoring dups
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
-# don't duplicate lines or empty spaces in history
-export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE="pwd"
 # combine multiline commands in history
 shopt -s cmdhist
-# Merge session histories
+# Append to history instead of overwriting
 shopt -s histappend
 
+# Aliases ================================================
+alias ls='ls -hG'
+alias grep='grep --color=auto'
+alias cl='clear'
+
+# Make commands  ask permission before overwriting files.
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
+
 # Fix tmux colors
-alias tmux="tmux -2"
+alias tmux='tmux -2'
 
-# Aliases
-alias notes="lf ~/Notes"
-alias cl="clear"
-alias cs="cht.sh "
+# Program dependent aliases
+[ -x "$(command -v cht.sh)" ] && alias cs='cht.sh'
+[ -x "$(command -v neomutt)" ] && alias mutt='neomutt'
+[ -x "$(command -v bat)" ] && alias cat='bat'
 
-if [ -x "$(command -v neomutt)" ]; then
-    alias mutt="neomutt"
+# Notes ================================================
+NOTE_DIR="$HOME/Notes"
+if [ -x "$(command -v lf)" ]
+then
+    alias notes='lf $NOTE_DIR'
+else
+    alias notes='cd $NOTE_DIR'
 fi
 
-if [ -x "$(command -v bat)" ]; then
-    alias cat="bat"
-fi
-
-# Load OSX 
+# Load OSX specific settings ===========================
 if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Loaded OSX specific preferences"
     alias gtd="cd ~/Desktop"
+    # Extend the PATH and add ~/bin
+    export PATH=~/bin:$PATH
 fi
 
