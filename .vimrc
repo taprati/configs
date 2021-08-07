@@ -91,7 +91,7 @@ nnoremap <leader>t :term <CR>
 
 " Color scheme ===========================================
 set t_Co=16
-set background=light
+set background=dark
 colorscheme solarized8
 
 " File Specific Options =================================
