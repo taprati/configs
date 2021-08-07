@@ -67,9 +67,8 @@ set statusline+=\ %#ErrorMsg#
 set statusline+=%m
 set statusline+=%#StatusLineTerm#
 set statusline+=%=
-set statusline+=%#Search#
+set statusline+=%#IncSearch#
 set statusline+=\ %l/%L
-set statusline+=\ %#IncSearch#
 set statusline+=\  
 
 " Searching Preferences=======================================
@@ -93,47 +92,32 @@ nnoremap <leader>t :term <CR>
 set t_Co=16
 set background=dark
 colorscheme solarized8
+"colorscheme gruvbox
 
 " File Specific Options =================================
-" If Makefile
+" Makefile
 augroup makefile
     autocmd FileType make   set noexpandtab
 augroup END
 
-" If Markdown
+" Markdown
 augroup markdown
     autocmd FileType markdown   set wrap
+    autocmd FileType markdown   set colorcolumn=0
 augroup END
 
 " Plugins ==========================================
 call plug#begin('~/.vim/plugged')
     Plug 'junegunn/goyo.vim'
 "    Plug 'bioSyntax/bioSyntax-vim'
-    Plug 'jupyter-vim/jupyter-vim'
-    Plug 'cjrh/vim-conda'
 call plug#end()
 
 nnoremap <leader>g :Goyo<CR>
 nnoremap <leader>gg :Goyo!<CR>
 
 " Abbreviations ===========================
-iabbrev @@ tyleraprati@gmail.com
 iabbrev waht what
 
 " Map local leader to single backslash
 let maplocalleader = "\\"
-
-" vim conda setting
-nnoremap <leader>ce :CondaChangeEnv<CR>
-let g:conda_startup_msg_suppress = 1
-let g:conda_startup_wrn_suppress = 1
-
-" jupyter vim bindings
-let g:jupyter_mapkeys = 0
-nnoremap <leader>jc :JupyterConnect<CR>
-nnoremap <leader>r :JupyterRunFile<CR>
-nnoremap <leader>l :JupyterSendRange<CR>
-nnoremap <leader>c :JupyterSendCell<CR>
-nnoremap <leader>b i## Title<CR><CR>##
-
 
