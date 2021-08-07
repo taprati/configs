@@ -33,11 +33,11 @@ set smartindent " indent to syntax of code
 
 " Formatting Preferences=====================================
 set number " Shows line numbers
-set textwidth=80
+"set textwidth=80
 set colorcolumn=80 " makes line at 80 chars width
-set wrap " Soft wrap text
+"set wrap " Soft wrap text
 "set spell " Spell check
-set signcolumn=yes " extra col for errors
+"set signcolumn=yes " extra col for errors
 
 " Spaces and Tabs============================================
 set tabstop=4 " Number of spaces when viewing
@@ -59,18 +59,23 @@ set laststatus=2
 
 set statusline=
 set statusline+=%#WildMenu#
+set statusline+=\  
 set statusline+=\ %f 
 set statusline+=\ %y 
 set statusline+=\  
-set statusline+=%#StatusLineTerm#
+set statusline+=%#DiffChange#
 set statusline+=\ %#ErrorMsg#
 set statusline+=%m
-set statusline+=%#StatusLineTerm#
+set statusline+=%#DiffChange#
 set statusline+=%=
 set statusline+=%#IncSearch#
+<<<<<<< HEAD
+=======
+set statusline+=\  
+>>>>>>> 96067167e8817cd162d07827bbbb0e55211e99c9
 set statusline+=\ %l/%L
 set statusline+=\  
-
+ 
 " Searching Preferences=======================================
 set hlsearch " Highlight search matches
 set incsearch " Searches progressively
@@ -89,6 +94,7 @@ set termwinsize=12x0 " set terminal default size
 nnoremap <leader>t :term <CR>
 
 " Color scheme ===========================================
+"colorscheme gruvbox
 set t_Co=16
 set background=dark
 colorscheme solarized8
@@ -102,18 +108,26 @@ augroup END
 
 " Markdown
 augroup markdown
+<<<<<<< HEAD
     autocmd FileType markdown   set wrap
+=======
+"    autocmd FileType markdown   set wrap
+>>>>>>> 96067167e8817cd162d07827bbbb0e55211e99c9
     autocmd FileType markdown   set colorcolumn=0
 augroup END
 
 " Plugins ==========================================
-call plug#begin('~/.vim/plugged')
-    Plug 'junegunn/goyo.vim'
+"call plug#begin('~/.vim/plugged')
+"    Plug 'junegunn/goyo.vim'
 "    Plug 'bioSyntax/bioSyntax-vim'
+<<<<<<< HEAD
 call plug#end()
+=======
+"call plug#end()
+>>>>>>> 96067167e8817cd162d07827bbbb0e55211e99c9
 
-nnoremap <leader>g :Goyo<CR>
-nnoremap <leader>gg :Goyo!<CR>
+"nnoremap <leader>g :Goyo<CR>
+"nnoremap <leader>gg :Goyo!<CR>
 
 " Abbreviations ===========================
 iabbrev waht what
