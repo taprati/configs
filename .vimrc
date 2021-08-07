@@ -69,10 +69,7 @@ set statusline+=%m
 set statusline+=%#DiffChange#
 set statusline+=%=
 set statusline+=%#IncSearch#
-<<<<<<< HEAD
-=======
 set statusline+=\  
->>>>>>> 96067167e8817cd162d07827bbbb0e55211e99c9
 set statusline+=\ %l/%L
 set statusline+=\  
  
@@ -108,11 +105,7 @@ augroup END
 
 " Markdown
 augroup markdown
-<<<<<<< HEAD
     autocmd FileType markdown   set wrap
-=======
-"    autocmd FileType markdown   set wrap
->>>>>>> 96067167e8817cd162d07827bbbb0e55211e99c9
     autocmd FileType markdown   set colorcolumn=0
 augroup END
 
@@ -120,11 +113,7 @@ augroup END
 "call plug#begin('~/.vim/plugged')
 "    Plug 'junegunn/goyo.vim'
 "    Plug 'bioSyntax/bioSyntax-vim'
-<<<<<<< HEAD
-call plug#end()
-=======
 "call plug#end()
->>>>>>> 96067167e8817cd162d07827bbbb0e55211e99c9
 
 "nnoremap <leader>g :Goyo<CR>
 "nnoremap <leader>gg :Goyo!<CR>
