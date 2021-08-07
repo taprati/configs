@@ -92,8 +92,10 @@ set termwinsize=12x0 " set terminal default size
 nnoremap <leader>t :term <CR>
 
 " Color scheme ===========================================
+"colorscheme gruvbox
+set t_Co=16
 set background=dark
-colorscheme gruvbox
+colorscheme solarized8
 
 " File Specific Options =================================
 " If Makefile

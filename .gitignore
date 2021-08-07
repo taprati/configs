@@ -4,6 +4,7 @@
 # But not these files...
 !.gitignore
 !.vimrc
+!.zshrc
 !.bashrc
 !.tmux.conf
 !.vim
