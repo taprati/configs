@@ -4,8 +4,12 @@
 # But not these files...
 !.gitignore
 !.vimrc
+!.vim
 !.zshrc
 !.bashrc
 !.tmux.conf
-!.vim
-.Rproj.user
+
+!.mutt/muttrc
+!.mutt/template_gmail
+!.mailcap
+
