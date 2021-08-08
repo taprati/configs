@@ -1,0 +1,31 @@
+# Mutt Configuration for Gmail
+
+# Identity
+set realname = "Name" # Name that shows up
+set from = "user@gmail.com" # The from address
+
+# IMAP = where emails are stored
+set imap_user = "user@gmail.com"
+
+# SMTP = Sending mail protocol
+set smtp_url = "smtp://user.com@smtp.gmail.com:587/"
+set smtp_authenticators = 'gssapi:login'
+
+# Source passwords
+source "gpg --batch -q --decrypt $HOME/.mutt/user_gmail_files/passwords.gpg |"
+
+# Set mailboxes
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX" # where unfiltered emails arrive
+set record = "+[Gmail]/Sent" # Sent mail folder
+set postponed = "+[Gmail]/Drafts" # Drafts mail folder
+set trash = "+[Gmail]/Trash" # Trash mailbox
+
+# Setting folders
+set header_cache = ~/.mutt/user_gmail_files/cache/headers
+set message_cachedir = ~/.mutt/user_gmail_files/cache/bodies
+set certificate_file = ~/.mutt/user_gmail_files/certificates
+
+# Set mailboxes
+mailboxes =INBOX =[Gmail]/Starred =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Spam =[Gmail]/Trash =[Gmail]/All\ Mail
+
