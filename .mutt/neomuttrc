@@ -11,7 +11,8 @@ set tmpdir = ~/.mutt/tmp
 set attach_save_dir = "~/Desktop"
 
 # General Settings
-set editor = "vim"
+set editor = "vim -c 'set spell'"
+set autoedit
 set charset = "utf-8"
 set record = ""
 set edit_headers = yes  # See headers when editing
@@ -32,8 +33,8 @@ set pager_context=5  # Leaves 5 lines overlap
 auto_view text/html  # View html automatically
 alternative_order text/plain text/enriched text/html  # save html for last
 
-# Status bar ======================
-set date_format = "%m.%d.%Y %H:%M"
+set date_format = "%D %H:%M"
+set index_format = "%4C %Z |%D| %-20.20F %s"
 
 # Sidebar ===========================
 set sidebar_visible = yes  #show sidebar by default
