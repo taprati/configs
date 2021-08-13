@@ -3,11 +3,12 @@
 #######################
 
 # Source account information
-source ~/.mutt/tyleraprati_gmail
+source ~/.mutt/accounts/tyleraprati_gmail/tyleraprati_config
 
 # Setting Folders
 set mailcap_path = ~/.mutt/mailcap
 set tmpdir = ~/.mutt/tmp
+set attach_save_dir = "~/Desktop"
 
 # General Settings
 set editor = "vim"

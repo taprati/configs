@@ -3,13 +3,17 @@
 
 # But not these files...
 !.gitignore
+
+!/.mutt/
+!/.mutt/neomuttrc
+!/.mutt/mailcap
+!/.mutt/accounts/
+!/.mutt/accounts/template/
+!/.mutt/accounts/template/*
+
 !.vimrc
-!.vim
+!/.vim
 !.zshrc
 !.bashrc
 !.tmux.conf
-
-!.mutt/muttrc
-!.mutt/template_gmail
-!.mailcap
 
