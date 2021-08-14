@@ -33,11 +33,20 @@ set pager_context=5  # Leaves 5 lines overlap
 auto_view text/html  # View html automatically
 alternative_order text/plain text/enriched text/html  # save html for last
 
+# Index and date formatting ================
 set date_format = "%D %H:%M"
-set index_format = "%4C %Z |%D| %-20.20F %s"
+set index_format = "%4C|%S| %-20.20F %-45.45s [%.6@date@]"
+
+# Dynamic date formating
+index-format-hook  date  "~d<1d"    "%[%H:%M]"
+index-format-hook  date  "~d<1m"    "%[%a %d]"
+index-format-hook  date  "~d<1y"    "%[%b %d]"
+index-format-hook  date  "~A"       "%[%m/%y]"
+
+set status_format = "-%r- %D [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s)-%>-(%P)---"
 
 # Sidebar ===========================
-set sidebar_visible = yes  #show sidebar by default
+set sidebar_visible = no  #show sidebar by default
 set imap_check_subscribed = yes  # check imap for mailboxes
 set sidebar_width = 20
 set sidebar_short_path = yes  #Should mailbox names be abbreviated?
@@ -90,20 +99,26 @@ bind index,pager B sidebar-toggle-visible
 #############################################################
 # Colors ####################################################
 #############################################################
+# black, green, yellow, blue, cyan, white, red, magenta
 
 # Default index colors
 color index yellow default '.*'
-color index_author red default '.*'
 color index_number blue default
+color index_flags red default '.*'
+color index_date green default
+color index_author magenta default '.*'
 color index_subject cyan default '.*'
+color index_size default default
 
 # New mail is boldened
 color index brightyellow black "~N"
-color index_author brightred black "~N"
+color index_flags brightred black "~N"
+color index_author brightmagenta black "~N"
 color index_subject brightcyan black "~N"
 
 # Tagged mail is highlighted
 color index brightyellow blue "~T"
+color index_flags brightred black "~T"
 color index_author brightred blue "~T"
 color index_subject brightcyan blue "~T"
 
@@ -114,6 +129,7 @@ mono indicator reverse
 mono error bold
 color normal default default
 color indicator brightblack white
+# Sidebar colors:
 color sidebar_highlight red default
 color sidebar_divider brightblack black
 color sidebar_flagged red black
@@ -138,11 +154,14 @@ color bold black default
 color underline black default
 color normal default default
 
-# Regex highlighting:
+# Regex highlighting Header:
 color header blue default ".*"
+color header brightgreen default "^(Date)"
 color header brightmagenta default "^(From)"
 color header brightcyan default "^(Subject)"
 color header brightwhite default "^(CC|BCC)"
+
+# Regex highlighting body:
 color body brightred default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+" # Email addresses
 color body brightblue default "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+" # URL
 color body green default "\`[^\`]*\`" # Green text between ` and `
