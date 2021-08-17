@@ -96,6 +96,9 @@ bind index,pager \Cj sidebar-next   # Ctrl-j to select next folder
 bind index,pager \Cl sidebar-open   # Ctrl-l to open selected folder
 bind index,pager B sidebar-toggle-visible
 
+# Macros
+macro index,pager A "<save-message>=[Gmail]/All%20Mail<enter><enter>" "Archive Message"
+
 #############################################################
 # Colors ####################################################
 #############################################################
