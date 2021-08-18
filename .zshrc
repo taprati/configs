@@ -62,6 +62,8 @@ alias tmux='tmux -2'
 [ -x "$(command -v cht.sh)" ] && alias cs='cht.sh'
 [ -x "$(command -v neomutt)" ] && alias mutt='neomutt'
 [ -x "$(command -v bat)" ] && alias cat='bat'
+# Use gotop or htop instead of top
+[ -x "$(command -v gotop)" ] && alias top='gotop'
 
 # Notes ================================================
 NOTE_DIR="$HOME/Notes"
