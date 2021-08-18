@@ -91,10 +91,10 @@ set termwinsize=12x0 " set terminal default size
 nnoremap <leader>t :term <CR>
 
 " Color scheme ===========================================
-"colorscheme gruvbox
-set t_Co=16
+colorscheme gruvbox
+"set t_Co=16
 set background=dark
-colorscheme solarized8
+"colorscheme solarized8
 "colorscheme gruvbox
 
 " File Specific Options =================================
