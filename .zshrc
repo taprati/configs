@@ -3,7 +3,8 @@
 ######################
 
 # Set Prompt
-PS1=$'\n'"%B%F{magenta}[%f%b%F{red}%n%f%F{cyan}@%f%F{green}%m%f%B%F{magenta}]%f%b %F{yellow}%~%f"$'\n'"$ "
+#PS1=$'\n'"%B%F{magenta}[%f%b%F{red}%n%f%F{cyan}@%f%F{green}%m%f%B%F{magenta}]%f%b %F{yellow}%~%f"$'\n'"$ "
+PS1=$"%B%F{magenta}[%f%b%F{red}%n%f%F{cyan}@%f%F{green}%m%f%B%F{magenta}]%f%b %F{yellow}%~%f"$'\n'"$ "
 
 # Enable autocomplete
 autoload -U compinit
