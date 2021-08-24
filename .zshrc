@@ -67,7 +67,7 @@ alias tmux='tmux -2'
 [ -x "$(command -v gotop)" ] && alias top='gotop'
 
 # Notes ================================================
-NOTE_DIR="$HOME/Notes"
+NOTE_DIR="$HOME/Desktop/Notes"
 if [ -x "$(command -v lf)" ]
 then
     alias notes='lf $NOTE_DIR'
