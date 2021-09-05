@@ -48,6 +48,7 @@ bindkey -v '^?' backward-delete-char
 
 # Aliases ===================================================
 alias ls='ls -hG'
+alias la='ls -hGa'
 alias grep='grep --color=auto'
 alias cl='clear'
 
@@ -56,12 +57,11 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 
-# Fix tmux colors
-alias tmux='tmux -2'
-
 # Program dependent aliases
 [ -x "$(command -v cht.sh)" ] && alias cs='cht.sh'
+[ -x "$(command -v tmux)" ] && alias tmux='tmux -2'
 [ -x "$(command -v neomutt)" ] && alias mutt='neomutt'
+# Use bat instead of cat
 [ -x "$(command -v bat)" ] && alias cat='bat'
 # Use gotop or htop instead of top
 [ -x "$(command -v gotop)" ] && alias top='gotop'
@@ -85,13 +85,28 @@ fi
 
 # Load Computer specific settings =======================
 if [ "$LOGNAME" = tyleraprati ]; then
-    echo "Loaded Personal computer preferences"
+    #echo "Loaded Personal computer preferences"
 fi
 
 if [ "$LOGNAME" = taprati ]; then
-    echo "Loaded Work computer preferences"
+    #echo "Loaded Work computer preferences"
 fi
 
 # Turn on syntax highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/taprati/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/taprati/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/taprati/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/taprati/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
