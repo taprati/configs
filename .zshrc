@@ -49,8 +49,10 @@ bindkey -v '^?' backward-delete-char
 # Aliases ===================================================
 alias ls='ls -hG'
 alias la='ls -hGa'
+alias ll='ls -hGl'
 alias grep='grep --color=auto'
-alias cl='clear'
+alias c='clear'
+alias ..='cd ..'
 
 # Make commands  ask permission before overwriting files.
 alias rm='rm -i'
@@ -77,9 +79,8 @@ fi
 
 # Load OSX specific settings ===========================
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "Loaded OSX specific preferences"
+    #echo "Loaded OSX specific preferences"
     alias gtd="cd ~/Desktop"
-    # Extend the PATH and add ~/bin
     export PATH=~/bin:$PATH
 fi
 

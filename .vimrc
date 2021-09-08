@@ -46,6 +46,10 @@ else
     nnoremap <C-v> "*p
 endif
 
+" Moving text around
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+
 " Vimrc shortcuts ==========================
 " Open vimrc in split
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
