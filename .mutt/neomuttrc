@@ -35,7 +35,7 @@ alternative_order text/plain text/enriched text/html  # save html for last
 
 # Index and date formatting ================
 set date_format = "%D %H:%M"
-set index_format = "%4C|%S| %-20.20F %-45.45s [%.6@date@]"
+set index_format = "%4C|%S| %-15.15F %-45.45s [%.6@date@]"
 
 # Dynamic date formating
 index-format-hook  date  "~d<1d"    "%[%H:%M]"
@@ -98,6 +98,10 @@ bind index,pager B sidebar-toggle-visible
 
 # Macros
 macro index,pager A "<save-message>=[Gmail]/All%20Mail<enter><enter>" "Archive Message"
+
+macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
 
 #############################################################
 # Colors ####################################################

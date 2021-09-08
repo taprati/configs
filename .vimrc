@@ -8,8 +8,21 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-surround'
     Plug 'bioSyntax/bioSyntax-vim'
+    Plug 'frazrepo/vim-rainbow'
+    Plug 'dylanaraps/root.vim'
     Plug 'arcticicestudio/nord-vim'
 call plug#end()
+
+" Root.nvim settings
+let g:root#patterns = ['.git', '*.Rproj', 'README.md']
+let g:root#auto = 0
+
+" Rainbow parenthesis on
+let g:rainbow_active = 1
+
+" Goyo Settings ==================================
+nnoremap <leader>f :Goyo<CR>
+nnoremap <leader>ff :Goyo!<CR>:source $MYVIMRC<CR>
 
 " General settings =========================
 syntax on " turn color syntax on 
@@ -21,10 +34,6 @@ set backspace=indent,eol,start " makes backspace function normal
 " Key bindings=============================================
 let mapleader =" "
 let maplocalleader = "\\"
-
-" Goyo Settings ==================================
-nnoremap <leader>f :Goyo<CR>
-nnoremap <leader>ff :Goyo!<CR>:source $MYVIMRC<CR>
 
 " Shellcheck
 nnoremap <leader>s :!clear && shellcheck %<CR>
@@ -49,10 +58,9 @@ set smartindent " indent to syntax of code
 
 " Formatting Preferences=====================================
 set number " Shows line numbers
-"set textwidth=80
 set colorcolumn=80 " makes line at 80 chars width
+"set textwidth=80
 "set wrap " Soft wrap text
-"set spell " Spell check
 "set signcolumn=yes " extra col for errors
 
 " Spaces and Tabs============================================
@@ -95,13 +103,6 @@ set incsearch " Searches progressively
 set ignorecase " ignores case when searching
 set smartcase " uses case when caps are used
 
-" Notes commands ===========================================
-if executable('rg')
-    set grepprg=rg\ --vimgrep\ -i
-endif
-command! -nargs=1 Ngrep grep "<args>" ~/Desktop/Notes
-nnoremap <leader>[ :Ngrep 
-
 " Terminal Settings=======================================
 set termwinsize=12x0 " set terminal default size
 nnoremap <leader>t :term <CR>
@@ -126,6 +127,7 @@ augroup markdown
     autocmd FileType markdown   set wrap
     autocmd FileType markdown   set colorcolumn=0
     autocmd vimenter *.md Goyo
+    autocmd FileType markdown   set spell
 augroup END
 
 " Abbreviations ===========================
