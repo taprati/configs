@@ -2,38 +2,66 @@
 " Tyler's Vim Settings =
 "=======================
 
-" Plugins ==========================================
+" Map leader and local leader ==========================
+let mapleader =" "
+let maplocalleader = "\\"
+
+" Plugins and Plugin-specific settings ==================
 call plug#begin('~/.vim/plugged')
     Plug 'junegunn/goyo.vim'
-    Plug 'tpope/vim-commentary'
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
     Plug 'tpope/vim-surround'
     Plug 'bioSyntax/bioSyntax-vim'
     Plug 'frazrepo/vim-rainbow'
     Plug 'dylanaraps/root.vim'
     Plug 'arcticicestudio/nord-vim'
+    Plug 'cjrh/vim-conda'
+    Plug 'jupyter-vim/jupyter-vim'
+    Plug 'goerz/jupytext.vim'
+    Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 call plug#end()
 
-" Root.nvim settings
+" Nvim-R settings
+let R_assign_map = "--"
+let R_min_editor_width = 80
+let R_rconsole_width = 1000
+let R_show_args = 1
+let R_objbr_opendf = 0
+
+" Root.vim settings
 let g:root#patterns = ['.git', '*.Rproj', 'README.md']
 let g:root#auto = 0
 
 " Rainbow parenthesis on
 let g:rainbow_active = 1
 
-" Goyo Settings ==================================
-nnoremap <leader>f :Goyo<CR>
-nnoremap <leader>ff :Goyo!<CR>:source $MYVIMRC<CR>
+" Goyo Settings (z for zen mode)
+nnoremap <leader>z :Goyo<CR>
+nnoremap <leader>zz :Goyo!<CR>:source $MYVIMRC<CR>
 
-" General settings =========================
+" fzf settings
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>h :History<CR>
+nnoremap <leader>l :BLines<CR>
+
+" General settings ================================
 syntax on " turn color syntax on 
 set mouse=a " Enable mouse in all modes
 set scrolloff=5 " starts scrolling earlier
 set noerrorbells " does not make a sound
 set backspace=indent,eol,start " makes backspace function normal
+set confirm "when using :q, asks for confirmation
+set encoding=utf-8
 
 " Key bindings=============================================
-let mapleader =" "
-let maplocalleader = "\\"
+" Indent blocks repeatedly
+xnoremap < <gv
+xnoremap > >gv
+
+" Fast switch between last file
+nnoremap <leader><leader> <c-^>
 
 " Shellcheck
 nnoremap <leader>s :!clear && shellcheck %<CR>
@@ -130,8 +158,8 @@ augroup END
 augroup markdown
     autocmd FileType markdown   set wrap
     autocmd FileType markdown   set colorcolumn=0
-    autocmd vimenter *.md Goyo
     autocmd FileType markdown   set spell
+    autocmd vimenter *.md Goyo
 augroup END
 
 " Abbreviations ===========================

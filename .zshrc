@@ -51,7 +51,7 @@ alias ls='ls -hG'
 alias la='ls -hGa'
 alias ll='ls -hGl'
 alias grep='grep --color=auto'
-alias c='clear'
+alias cl='clear'
 alias ..='cd ..'
 
 # Make commands  ask permission before overwriting files.
@@ -63,6 +63,8 @@ alias cp='cp -i'
 [ -x "$(command -v cht.sh)" ] && alias cs='cht.sh'
 [ -x "$(command -v tmux)" ] && alias tmux='tmux -2'
 [ -x "$(command -v neomutt)" ] && alias mutt='neomutt'
+# Make R stop asking to save workspace image
+[ -x "$(command -v R)" ] && alias R='R --no-save'
 # Use bat instead of cat
 [ -x "$(command -v bat)" ] && alias cat='bat'
 # Use gotop or htop instead of top
@@ -111,3 +113,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export PATH="/usr/local/sbin:$PATH"
