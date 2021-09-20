@@ -60,6 +60,7 @@ alias mv='mv -i'
 alias cp='cp -i'
 
 # Program dependent aliases
+alias fzf='fzf --margin 20% --border rounded --reverse'
 [ -x "$(command -v cht.sh)" ] && alias cs='cht.sh'
 [ -x "$(command -v tmux)" ] && alias tmux='tmux -2'
 [ -x "$(command -v neomutt)" ] && alias mutt='neomutt'
