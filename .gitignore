@@ -17,4 +17,8 @@
 !.bashrc
 !.tmux.conf
 
+!.jupyter/
+!.jupyter/jupyter_qtconsole_config.py
+!.jupyter/jupyter_console_config.py
+
 .Rproj.user

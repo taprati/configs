@@ -54,14 +54,14 @@ alias grep='grep --color=auto'
 alias cl='clear'
 alias ..='cd ..'
 
-# Make commands  ask permission before overwriting files.
-alias rm='rm -i'
-alias mv='mv -i'
-alias cp='cp -i'
+# Make commands ask permission before overwriting files and verbose
+alias rm='rm -iv'
+alias mv='mv -iv'
+alias cp='cp -iv'
+alias mkdir='mkdir -pv'
 
 # Program dependent aliases
 alias fzf='fzf --margin 20% --border rounded --reverse'
-[ -x "$(command -v cht.sh)" ] && alias cs='cht.sh'
 [ -x "$(command -v tmux)" ] && alias tmux='tmux -2'
 [ -x "$(command -v neomutt)" ] && alias mutt='neomutt'
 # Make R stop asking to save workspace image
@@ -70,6 +70,9 @@ alias fzf='fzf --margin 20% --border rounded --reverse'
 [ -x "$(command -v bat)" ] && alias cat='bat'
 # Use gotop or htop instead of top
 [ -x "$(command -v gotop)" ] && alias top='gotop'
+
+# Functions
+p() { cd "$(cat ~/.projects | fzf --margin 5% --border rounded --reverse | sed "s|~|$HOME|")"}
 
 # Notes ================================================
 NOTE_DIR="$HOME/Desktop/Notes"
@@ -115,3 +118,6 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export PATH="/usr/local/sbin:$PATH"
+
+# itermplot
+#export MPLBACKEND="module://itermplot"
