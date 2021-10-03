@@ -53,6 +53,7 @@ alias ll='ls -hGl'
 alias grep='grep --color=auto'
 alias cl='clear'
 alias ..='cd ..'
+alias :q='exit'
 
 # Make commands ask permission before overwriting files and verbose
 alias rm='rm -iv'

@@ -14,23 +14,23 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'bioSyntax/bioSyntax-vim'
     Plug 'frazrepo/vim-rainbow'
-    "Plug 'dylanaraps/root.vim'
+    Plug 'SirVer/ultisnips'
     Plug 'cjrh/vim-conda'
     Plug 'jupyter-vim/jupyter-vim'
     Plug 'goerz/jupytext.vim'
     Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 call plug#end()
 
-" Jupyter-vim settings ====================
+" Jupyter-vim settings
 let g:jupyter_mapkeys = 0
 nnoremap <buffer> <silent> <localleader>c :JupyterConnect<CR>
 nnoremap <buffer> <silent> <localleader>R :JupyterRunFile<CR> 
-nnoremap <buffer> <silent> <localleader>i :PythonImportThisFile<CR>
-nnoremap <buffer> <silent> <localleader>d :JupyterCd %:p:h<CR>
 nnoremap <buffer> <silent> <localleader>x :JupyterSendCell<CR>
 nnoremap <buffer> <silent> <localleader>r :JupyterSendRange<CR> <CR>
 nmap     <buffer> <silent> <localleader>E <Plug>JupyterRunTextObj
-vmap     <buffer> <silent> <localleader>e <Plug>JupyterRunVisual
+vmap     <buffer> <silent> <localleader>r <Plug>JupyterRunVisual
+nnoremap <buffer> <silent> <localleader>d :JupyterCd %:p:h<CR>
+nnoremap <buffer> <silent> <localleader>i :PythonImportThisFile<CR>
 nnoremap <buffer> <silent> <localleader>u :JupyterUpdateShell<CR>
 nnoremap <buffer> <silent> <localleader>b :PythonSetBreak<CR>
 
@@ -41,16 +41,16 @@ let R_rconsole_width = 1000
 let R_show_args = 1
 let R_objbr_opendf = 0
 
-" Root.vim settings
-let g:root#patterns = ['.git', '*.Rproj', 'README.md']
-let g:root#auto = 0
+" Ultisnips settings
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Rainbow parenthesis on
 let g:rainbow_active = 1
 
 " Goyo Settings (z for zen mode)
 nnoremap <leader>z :Goyo<CR>
-nnoremap <leader>zz :Goyo!<CR>:source $MYVIMRC<CR>
 
 " fzf settings
 nnoremap <leader>f :Files<CR>
@@ -86,6 +86,9 @@ endif
 " Moving text around
 vnoremap K :m '<-2<CR>gv=gv
 vnoremap J :m '>+1<CR>gv=gv
+
+" Toggle background
+nnoremap <expr><leader>cb &background == 'light' ? ':set bg=dark<CR>' : ':set bg=light<CR>'
 
 " Vimrc shortcuts ==========================
 " Open vimrc in split
@@ -176,7 +179,7 @@ augroup END
 " Python
 augroup python
     autocmd FileType python    nnoremap <leader>s :!clear && pylint %<CR>
-    autocmd FileType python    nnoremap <leader>f :!clear && black %<CR>
+    autocmd FileType python    nnoremap <leader>cf :!clear && black %<CR>
 augroup END
 " Bash
 augroup bash
