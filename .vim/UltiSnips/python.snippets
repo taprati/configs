@@ -1,0 +1,30 @@
+snippet #! "#!/usr/bin/env python" b
+#!/usr/bin/env python
+$0
+endsnippet
+
+snippet today "Date"
+`date +%F`
+endsnippet
+
+snippet docs "docstring"
+"""
+$1
+"""
+$0
+endsnippet
+
+snippet scset "scanpy settings"
+# Scanpy configurations
+sc.set_figure_params(dpi=80, dpi_save=300, fontsize=14, color_map=mymap)
+sc.settings.autoshow = False
+sc.settings.autosave = False
+sc.settings.file_format_figs = "pdf"
+sc.settings.file_format_data = "h5ad"
+sc.settings.verbosity = 2
+sc.settings.figdir = "./%s/" % (RUN)
+sc.settings.datasetdir = "./data/"
+
+$0
+endsnippet
+

@@ -1,6 +1,5 @@
 # Ignore everything
 *
-
 # But not these files...
 !.gitignore
 
@@ -13,6 +12,11 @@
 
 !.vimrc
 !/.vim
+!/.vim/UltiSnips
+!/.vim/UltiSnips/*
+!/.vim/colors
+!/.vim/colors/*
+
 !.zshrc
 !.bashrc
 !.tmux.conf
@@ -20,5 +24,3 @@
 !.jupyter/
 !.jupyter/jupyter_qtconsole_config.py
 !.jupyter/jupyter_console_config.py
-
-.Rproj.user
