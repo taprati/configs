@@ -7,24 +7,37 @@ snippet today "Date"
 `date +%F`
 endsnippet
 
-snippet docs "docstring"
+snippet doc "docstring"
 """
 $1
 """
 $0
 endsnippet
 
-snippet scset "scanpy settings"
+snippet sconfig "scanpy settings"
 # Scanpy configurations
 sc.set_figure_params(dpi=80, dpi_save=300, fontsize=14, color_map=mymap)
-sc.settings.autoshow = False
-sc.settings.autosave = False
-sc.settings.file_format_figs = "pdf"
-sc.settings.file_format_data = "h5ad"
-sc.settings.verbosity = 2
-sc.settings.figdir = "./%s/" % (RUN)
-sc.settings.datasetdir = "./data/"
+sc.settings.autoshow = True
+sc.settings.verbosity = 3
+sc.settings.figdir = '../results/exploration/'
+$0
+endsnippet
 
+snippet logger "Intialize logger"
+# Logging
+import logging
+handler = logging.StreamHandler()
+logging.getLogger().addHandler(handler)
+logger = logging.getLogger(__name__)
+logger.setLevel('INFO')
+$0
+endsnippet
+
+snippet params "Set parameters"
+# Define parameters
+RUN = '$1'
+INPUT = '$2'
+OUTPUT = '$3'
 $0
 endsnippet
 

@@ -3,8 +3,7 @@
 ######################
 
 # Set Prompt
-#PS1=$'\n'"%B%F{magenta}[%f%b%F{red}%n%f%F{cyan}@%f%F{green}%m%f%B%F{magenta}]%f%b %F{yellow}%~%f"$'\n'"$ "
-PS1="%B%F{magenta}[%f%b%F{red}%n%f%F{cyan}@%f%F{green}%m%f%B%F{magenta}]%f%b %F{yellow}%~%f"$'\n'"$ "
+PS1="%B%F{magenta}[%f%b%F{red}%n%f%F{cyan}@%f%F{green}%m%f%B%F{magenta}]%f%b %F{yellow}%2~%f"$'\n'"$ "
 
 # Enable autocomplete
 autoload -U compinit
@@ -61,6 +60,9 @@ alias mv='mv -iv'
 alias cp='cp -iv'
 alias mkdir='mkdir -pv'
 
+# Conda alias
+alias ca='conda activate'
+
 # Program dependent aliases
 alias fzf='fzf --margin 20% --border rounded --reverse'
 [ -x "$(command -v tmux)" ] && alias tmux='tmux -2'
@@ -73,7 +75,11 @@ alias fzf='fzf --margin 20% --border rounded --reverse'
 [ -x "$(command -v gotop)" ] && alias top='gotop'
 
 # Functions
-p() { cd "$(cat ~/.projects | fzf --margin 5% --border rounded --reverse | sed "s|~|$HOME|")"}
+bookmarks() { 
+    cd "$(cat ~/.bookmarks | fzf --margin 5% --border rounded --reverse | sed "s|~|$HOME|")"
+}
+zle -N bookmarks
+bindkey ^p bookmarks
 
 # Notes ================================================
 NOTE_DIR="$HOME/Desktop/Notes"

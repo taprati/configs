@@ -13,9 +13,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'tpope/vim-surround'
     Plug 'bioSyntax/bioSyntax-vim'
-    Plug 'frazrepo/vim-rainbow'
     Plug 'SirVer/ultisnips'
     Plug 'cjrh/vim-conda'
+    Plug 'jpalardy/vim-slime'
     Plug 'jupyter-vim/jupyter-vim'
     Plug 'goerz/jupytext.vim'
     Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
@@ -29,10 +29,6 @@ nnoremap <buffer> <silent> <localleader>x :JupyterSendCell<CR>
 nnoremap <buffer> <silent> <localleader>r :JupyterSendRange<CR> <CR>
 nmap     <buffer> <silent> <localleader>E <Plug>JupyterRunTextObj
 vmap     <buffer> <silent> <localleader>r <Plug>JupyterRunVisual
-nnoremap <buffer> <silent> <localleader>d :JupyterCd %:p:h<CR>
-nnoremap <buffer> <silent> <localleader>i :PythonImportThisFile<CR>
-nnoremap <buffer> <silent> <localleader>u :JupyterUpdateShell<CR>
-nnoremap <buffer> <silent> <localleader>b :PythonSetBreak<CR>
 
 " Nvim-R settings
 let R_assign_map = "--"
@@ -45,9 +41,11 @@ let R_objbr_opendf = 0
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="vertical"
 
-" Rainbow parenthesis on
-let g:rainbow_active = 1
+" Vim slime
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
 
 " Goyo Settings (z for zen mode)
 nnoremap <leader>z :Goyo<CR>
@@ -101,11 +99,9 @@ set autoindent " indent to above line
 set smartindent " indent to syntax of code
 
 " Formatting Preferences=====================================
-set number relativenumber " Shows line numbers
-set colorcolumn=80 " makes line at 80 chars width
-"set textwidth=80
-"set wrap " Soft wrap text
-"set signcolumn=yes " extra col for errors
+set number relativenumber
+set colorcolumn=80
+set nowrap
 
 " Spaces and Tabs============================================
 set tabstop=4 " Number of spaces when viewing
@@ -119,7 +115,6 @@ set splitbelow splitright " set window split defaults
 " UI configurations =========================================
 set cursorline " highlights the line you are on
 set showmatch " Highlights matching bracket or parenthesis
-"set noshowmode " Hides modes if using another status bar
 
 " Status line ===============================================
 set ls=2 " Status bar always on
@@ -134,13 +129,12 @@ set statusline+=\
 set statusline+=%#DiffChange#
 set statusline+=\ %#ErrorMsg#
 set statusline+=%m
+set statusline+=%r
 set statusline+=%#DiffChange#
 set statusline+=%=
 set statusline+=%#IncSearch#
-set statusline+=\  
-set statusline+=\ %l/%L
-set statusline+=\  
- 
+set statusline+=(%l/%L)
+
 " Searching Preferences=======================================
 set hlsearch " Highlight search matches
 set incsearch " Searches progressively
@@ -159,31 +153,28 @@ colorscheme solarized8
 " File Specific Options =================================
 " Makefile
 augroup makefile
-    autocmd FileType make   set noexpandtab
+    autocmd FileType make set noexpandtab
 augroup END
 " text
 augroup text
-    autocmd FileType text   set wrap
-    autocmd FileType text   set colorcolumn=0
-    autocmd FileType text   set spell
-    autocmd FileType text   set background=light
+    autocmd FileType text set wrap
+    autocmd FileType text set colorcolumn=0
+    autocmd FileType text set spell
 augroup END
 " Markdown
 augroup markdown
-    autocmd FileType markdown   set wrap
-    autocmd FileType markdown   set colorcolumn=0
-    autocmd FileType markdown   set spell
-    autocmd FileType markdown   set background=light
-    autocmd vimenter *.md Goyo
+    autocmd FileType markdown set wrap
+    autocmd FileType markdown set colorcolumn=0
+    autocmd FileType markdown set spell
 augroup END
 " Python
 augroup python
-    autocmd FileType python    nnoremap <leader>s :!clear && pylint %<CR>
-    autocmd FileType python    nnoremap <leader>cf :!clear && black %<CR>
+    autocmd FileType python nnoremap <leader>s :!clear && pylint %<CR>
+    autocmd FileType python nnoremap <leader>cf :!clear && black %<CR>
 augroup END
 " Bash
 augroup bash
-    autocmd Filetype bash   nnoremap <leader>s :!clear && shellcheck %<CR>
+    autocmd Filetype bash nnoremap <leader>s :!clear && shellcheck %<CR>
 augroup END
 
 " Abbreviations ===========================
