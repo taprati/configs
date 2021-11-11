@@ -17,18 +17,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'cjrh/vim-conda'
     Plug 'jpalardy/vim-slime'
     Plug 'jupyter-vim/jupyter-vim'
-    Plug 'goerz/jupytext.vim'
     Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 call plug#end()
-
-" Jupyter-vim settings
-let g:jupyter_mapkeys = 0
-nnoremap <buffer> <silent> <localleader>c :JupyterConnect<CR>
-nnoremap <buffer> <silent> <localleader>R :JupyterRunFile<CR> 
-nnoremap <buffer> <silent> <localleader>x :JupyterSendCell<CR>
-nnoremap <buffer> <silent> <localleader>r :JupyterSendRange<CR> <CR>
-nmap     <buffer> <silent> <localleader>E <Plug>JupyterRunTextObj
-vmap     <buffer> <silent> <localleader>r <Plug>JupyterRunVisual
 
 " Nvim-R settings
 let R_assign_map = "--"
@@ -101,13 +91,14 @@ set smartindent " indent to syntax of code
 " Formatting Preferences=====================================
 set number relativenumber
 set colorcolumn=80
-set nowrap
+set wrap
 
 " Spaces and Tabs============================================
 set tabstop=4 " Number of spaces when viewing
 set softtabstop=4 " Number of spaces when editing
 set shiftwidth=4 "Make shifting 4 spaces
 set expandtab " tabs are spaces
+set smarttab
 
 " Window splitting and movement =============================
 set splitbelow splitright " set window split defaults
@@ -115,6 +106,8 @@ set splitbelow splitright " set window split defaults
 " UI configurations =========================================
 set cursorline " highlights the line you are on
 set showmatch " Highlights matching bracket or parenthesis
+set showcmd
+set autoread
 
 " Status line ===============================================
 set ls=2 " Status bar always on
@@ -136,10 +129,12 @@ set statusline+=%#IncSearch#
 set statusline+=(%l/%L)
 
 " Searching Preferences=======================================
-set hlsearch " Highlight search matches
 set incsearch " Searches progressively
 set ignorecase " ignores case when searching
 set smartcase " uses case when caps are used
+set shortmess-=S
+" clear highlighting
+nnoremap <silent> <C-l> :nohlsearch<CR>
 
 " Terminal Settings=======================================
 set termwinsize=12x0 " set terminal default size
