@@ -49,6 +49,7 @@ bindkey -v '^?' backward-delete-char
 alias ls='ls -hG'
 alias la='ls -hGa'
 alias ll='ls -hGl'
+alias lt='ls -hGlrt'
 alias grep='grep --color=auto'
 alias cl='clear'
 alias ..='cd ..'
@@ -72,7 +73,7 @@ alias fzf='fzf --margin 20% --border rounded --reverse'
 # Use bat instead of cat
 [ -x "$(command -v bat)" ] && alias cat='bat'
 # Use gotop or htop instead of top
-[ -x "$(command -v gotop)" ] && alias top='gotop'
+[ -x "$(command -v htop)" ] && alias top='htop'
 
 # Functions
 bookmarks() { 
