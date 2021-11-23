@@ -16,7 +16,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'SirVer/ultisnips'
     Plug 'cjrh/vim-conda'
     Plug 'jpalardy/vim-slime'
-    Plug 'jupyter-vim/jupyter-vim'
     Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 call plug#end()
 
@@ -35,16 +34,26 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Vim slime
 let g:slime_target = "tmux"
-let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+let g:slime_default_config = {"socket_name": "default", "target_pane": "2"}
+let g:slime_dont_ask_default = 1
+let g:slime_preserve_curpos = 1
+let g:slime_cell_delimiter = "# %%"
+let g:slime_python_ipython = 1
+nmap <localleader>e <Plug>SlimeSendCell
+nnoremap <localleader>C :SlimeSend1 clear<CR>
+" TODO: make this run file in ipython instead of run all lines
+nnoremap <localleader>R :%SlimeSend<CR>
+" TODO: have these work with cells instead of lines
+nnoremap <localleader>B :1,.SlimeSend<CR>
+nnoremap <localleader>E :.,$SlimeSend<CR>
 
-" Goyo Settings (z for zen mode)
-nnoremap <leader>z :Goyo<CR>
+" Goyo Settings (Z for zen mode)
+nnoremap <leader>Z :Goyo<CR>
 
 " fzf settings
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
-nnoremap <leader>l :BLines<CR>
 
 " General settings =========================================
 syntax on " turn color syntax on 
@@ -174,4 +183,14 @@ augroup END
 
 " Abbreviations ===========================
 iabbrev waht what
+
+fun! SetCodeBlockHighlighting()
+    let cell_separator = '# %%'
+    let regex_cell= "^" . cell_separator . "\\([^#]\\|$\\).*$"
+    let match_cmd = "syntax match CodeBlock \"" . regex_cell . "\"" 
+    let highlight_cmd = "highlight CodeBlock ctermfg=255 guifg=#eeeeee ctermbg=022 guibg=#005f00 cterm=bold gui=bold"
+    execute match_cmd
+    execute highlight_cmd
+endfu
+autocmd bufenter * :call SetCodeBlockHighlighting()
 
