@@ -146,7 +146,7 @@ set shortmess-=S
 nnoremap <silent> <C-l> :nohlsearch<CR>
 
 " Terminal Settings=======================================
-set termwinsize=12x0 " set terminal default size
+set termwinsize=14x0
 nnoremap <leader>t :term <CR>
 
 " Color scheme ===========================================

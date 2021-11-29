@@ -3,7 +3,7 @@
 #######################
 
 # Source account information
-source ~/.mutt/accounts/outlook_tyleraprati/config_outlook
+source ~/.mutt/accounts/tyleraprati_gmail/tyleraprati_config
 
 # Setting Folders
 set mailcap_path = ~/.mutt/mailcap

@@ -16,6 +16,7 @@
 !/.vim/UltiSnips/*
 !/.vim/colors
 !/.vim/colors/*
+/.vim/color/.DS_Store
 
 !.zshrc
 !.bashrc
