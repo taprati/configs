@@ -32,6 +32,10 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 
+" Vim conda
+let g:conda_startup_msg_suppress = 1
+let g:conda_startup_wrn_suppress = 1
+
 " Vim slime
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "2"}
@@ -43,6 +47,7 @@ nmap <localleader>e <Plug>SlimeSendCell
 nnoremap <localleader>C :SlimeSend1 clear<CR>
 " TODO: make this run file in ipython instead of run all lines
 nnoremap <localleader>R :%SlimeSend<CR>
+nnoremap <localleader>r :SlimeSend<CR>
 " TODO: have these work with cells instead of lines
 nnoremap <localleader>B :1,.SlimeSend<CR>
 nnoremap <localleader>E :.,$SlimeSend<CR>

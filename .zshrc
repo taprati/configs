@@ -3,7 +3,8 @@
 ######################
 
 # Set Prompt
-PS1="%B%F{magenta}➜ %f"
+#PS1="%B%F{magenta}➜ %f"
+PS1="%B%F{cyan}[%f%b%F{yellow}%~%f%B%F{cyan}]%f%b%F{magenta}"$'\n'"➜ %f"
 #PS1="%B%F{magenta}[%f%b%F{red}%n%f%F{cyan}@%f%F{green}%m%f%B%F{magenta}]%f%b %F{yellow}%2~%f"$'\n'"$ "
 
 # Enable autocomplete
@@ -128,5 +129,7 @@ unset __conda_setup
 
 export PATH="/usr/local/sbin:$PATH"
 
-# itermplot
-#export MPLBACKEND="module://itermplot"
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/taprati/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/taprati/google-cloud-sdk/path.zsh.inc'; fi
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/taprati/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/taprati/google-cloud-sdk/completion.zsh.inc'; fi
