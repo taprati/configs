@@ -16,15 +16,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'SirVer/ultisnips'
     Plug 'cjrh/vim-conda'
     Plug 'jpalardy/vim-slime'
-    Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
+    Plug 'vim-scripts/CycleColor'
 call plug#end()
-
-" Nvim-R settings
-let R_assign_map = "--"
-let R_min_editor_width = 80
-let R_rconsole_width = 1000
-let R_show_args = 1
-let R_objbr_opendf = 0
 
 " Ultisnips settings
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -89,6 +82,9 @@ endif
 vnoremap K :m '<-2<CR>gv=gv
 vnoremap J :m '>+1<CR>gv=gv
 
+" Replace all
+nnoremap <leader>ra :%s//g<Left><Left>
+
 " Toggle background
 nnoremap <expr><leader>cb &background == 'light' ? ':set bg=dark<CR>' : ':set bg=light<CR>'
 
@@ -105,7 +101,6 @@ set smartindent " indent to syntax of code
 " Formatting Preferences=====================================
 set number relativenumber
 set colorcolumn=80
-set wrap
 
 " Spaces and Tabs============================================
 set tabstop=4 " Number of spaces when viewing
@@ -124,23 +119,22 @@ set showcmd
 set autoread
 
 " Status line ===============================================
-set ls=2 " Status bar always on
-set laststatus=2
+set laststatus=1
 
-set statusline=
-set statusline+=%#WildMenu#
-set statusline+=\  
-set statusline+=\ %f 
-set statusline+=\ %y 
-set statusline+=\  
-set statusline+=%#DiffChange#
-set statusline+=\ %#ErrorMsg#
-set statusline+=%m
-set statusline+=%r
-set statusline+=%#DiffChange#
-set statusline+=%=
-set statusline+=%#IncSearch#
-set statusline+=(%l/%L)
+"set statusline=
+"set statusline+=%#WildMenu#
+"set statusline+=\  
+"set statusline+=\ %f 
+"set statusline+=\ %y 
+"set statusline+=\  
+"set statusline+=%#DiffChange#
+"set statusline+=\ %#ErrorMsg#
+"set statusline+=%m
+"set statusline+=%r
+"set statusline+=%#DiffChange#
+"set statusline+=%=
+"set statusline+=%#IncSearch#
+"set statusline+=(%l/%L)
 
 " Searching Preferences=======================================
 set incsearch " Searches progressively
@@ -157,7 +151,7 @@ nnoremap <leader>t :term <CR>
 " Color scheme ===========================================
 set background=dark
 set t_Co=16
-colorscheme solarized8
+colorscheme solarized8_flat
 
 " File Specific Options =================================
 " Makefile
@@ -183,7 +177,7 @@ augroup python
 augroup END
 " Bash
 augroup bash
-    autocmd Filetype bash nnoremap <leader>s :!clear && shellcheck %<CR>
+    autocmd Filetype sh nnoremap <leader>s :!clear && shellcheck -x %<CR>
 augroup END
 
 " Abbreviations ===========================
