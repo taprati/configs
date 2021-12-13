@@ -75,7 +75,7 @@ if has('clipboard')
     set clipboard=unnamed
 else
     vnoremap <C-c> "*y
-    nnoremap <C-v> "*p
+    nnoremap <C-V> "*p
 endif
 
 " Moving text around
@@ -119,8 +119,7 @@ set showcmd
 set autoread
 
 " Status line ===============================================
-set laststatus=1
-
+"set laststatus=1
 "set statusline=
 "set statusline+=%#WildMenu#
 "set statusline+=\  
@@ -137,6 +136,7 @@ set laststatus=1
 "set statusline+=(%l/%L)
 
 " Searching Preferences=======================================
+set hlsearch " highlight search matches
 set incsearch " Searches progressively
 set ignorecase " ignores case when searching
 set smartcase " uses case when caps are used
@@ -180,9 +180,7 @@ augroup bash
     autocmd Filetype sh nnoremap <leader>s :!clear && shellcheck -x %<CR>
 augroup END
 
-" Abbreviations ===========================
-iabbrev waht what
-
+" Code block highlighting
 fun! SetCodeBlockHighlighting()
     let cell_separator = '# %%'
     let regex_cell= "^" . cell_separator . "\\([^#]\\|$\\).*$"
