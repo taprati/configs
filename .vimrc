@@ -100,7 +100,7 @@ set smartindent " indent to syntax of code
 
 " Formatting Preferences=====================================
 set number relativenumber
-set colorcolumn=80
+set colorcolumn=0
 
 " Spaces and Tabs============================================
 set tabstop=4 " Number of spaces when viewing
@@ -113,10 +113,11 @@ set smarttab
 set splitbelow splitright " set window split defaults
 
 " UI configurations =========================================
-set cursorline " highlights the line you are on
+set nocursorline " highlights the line you are on
 set showmatch " Highlights matching bracket or parenthesis
-set showcmd
+set showcmd " Shows keys typed
 set autoread
+set ruler
 
 " Status line ===============================================
 "set laststatus=1
