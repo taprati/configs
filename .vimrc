@@ -16,7 +16,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'SirVer/ultisnips'
     Plug 'cjrh/vim-conda'
     Plug 'jpalardy/vim-slime'
-    Plug 'vim-scripts/CycleColor'
 call plug#end()
 
 " Ultisnips settings
@@ -54,7 +53,7 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
 
 " General settings =========================================
-syntax on " turn color syntax on 
+syntax on " turn color syntax on
 set mouse=a " Enable mouse in all modes
 set scrolloff=5 " starts scrolling earlier
 set noerrorbells " does not make a sound
@@ -69,6 +68,10 @@ xnoremap > >gv
 
 " Fast switch between last file
 nnoremap <leader><leader> <c-^>
+
+" Auto delete trailing whitespace
+autocmd BufWritePre * %s/\s\+$//e
+"autocmd BufWritePre * %s/\n\+\%$//e
 
 "copy paste to clipboard shortcuts
 if has('clipboard')
@@ -113,28 +116,19 @@ set smarttab
 set splitbelow splitright " set window split defaults
 
 " UI configurations =========================================
-set nocursorline " highlights the line you are on
+set nocompatible
+filetype plugin on
 set showmatch " Highlights matching bracket or parenthesis
 set showcmd " Shows keys typed
 set autoread
 set ruler
+set wildmenu
+set path+=**
+set wildmode=longest,list,full
+"set complete
 
-" Status line ===============================================
-"set laststatus=1
-"set statusline=
-"set statusline+=%#WildMenu#
-"set statusline+=\  
-"set statusline+=\ %f 
-"set statusline+=\ %y 
-"set statusline+=\  
-"set statusline+=%#DiffChange#
-"set statusline+=\ %#ErrorMsg#
-"set statusline+=%m
-"set statusline+=%r
-"set statusline+=%#DiffChange#
-"set statusline+=%=
-"set statusline+=%#IncSearch#
-"set statusline+=(%l/%L)
+" Disable auto commenting
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Searching Preferences=======================================
 set hlsearch " highlight search matches
@@ -150,34 +144,40 @@ set termwinsize=14x0
 nnoremap <leader>t :term <CR>
 
 " Color scheme ===========================================
-set background=dark
-set t_Co=16
-colorscheme solarized8_flat
+"set background=dark
+"set t_Co=16
+"colorscheme solarized8_flat
+colorscheme peachpuff
 
 " File Specific Options =================================
 " Makefile
 augroup makefile
+    autocmd!
     autocmd FileType make set noexpandtab
 augroup END
 " text
 augroup text
+    autocmd!
     autocmd FileType text set wrap
     autocmd FileType text set colorcolumn=0
-    autocmd FileType text set spell
+    "autocmd FileType text set spell
 augroup END
 " Markdown
 augroup markdown
+    autocmd!
     autocmd FileType markdown set wrap
     autocmd FileType markdown set colorcolumn=0
     autocmd FileType markdown set spell
 augroup END
 " Python
 augroup python
+    autocmd!
     autocmd FileType python nnoremap <leader>s :!clear && pylint %<CR>
     autocmd FileType python nnoremap <leader>cf :!clear && black %<CR>
 augroup END
 " Bash
 augroup bash
+    autocmd!
     autocmd Filetype sh nnoremap <leader>s :!clear && shellcheck -x %<CR>
 augroup END
 
@@ -185,10 +185,9 @@ augroup END
 fun! SetCodeBlockHighlighting()
     let cell_separator = '# %%'
     let regex_cell= "^" . cell_separator . "\\([^#]\\|$\\).*$"
-    let match_cmd = "syntax match CodeBlock \"" . regex_cell . "\"" 
+    let match_cmd = "syntax match CodeBlock \"" . regex_cell . "\""
     let highlight_cmd = "highlight CodeBlock ctermfg=255 guifg=#eeeeee ctermbg=022 guibg=#005f00 cterm=bold gui=bold"
     execute match_cmd
     execute highlight_cmd
 endfu
 autocmd bufenter * :call SetCodeBlockHighlighting()
-

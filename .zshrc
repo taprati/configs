@@ -65,6 +65,7 @@ alias mkdir='mkdir -pv'
 
 # Conda alias
 alias ca='conda activate'
+alias bi='brew install'
 
 # Program dependent aliases
 alias fzf='fzf --margin 20% --border rounded --reverse'
