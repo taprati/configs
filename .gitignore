@@ -21,6 +21,7 @@
 !.zshrc
 !.bashrc
 !.tmux.conf
+!.alacritty.yml
 
 !.jupyter/
 !.jupyter/jupyter_qtconsole_config.py

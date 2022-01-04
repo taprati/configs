@@ -16,6 +16,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'SirVer/ultisnips'
     Plug 'cjrh/vim-conda'
     Plug 'jpalardy/vim-slime'
+    Plug 'ap/vim-css-color'
 call plug#end()
 
 " Ultisnips settings
@@ -118,6 +119,7 @@ set splitbelow splitright " set window split defaults
 " UI configurations =========================================
 set nocompatible
 filetype plugin on
+filetype indent on
 set showmatch " Highlights matching bracket or parenthesis
 set showcmd " Shows keys typed
 set autoread
@@ -125,7 +127,6 @@ set ruler
 set wildmenu
 set path+=**
 set wildmode=longest,list,full
-"set complete
 
 " Disable auto commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -143,11 +144,9 @@ nnoremap <silent> <C-l> :nohlsearch<CR>
 set termwinsize=14x0
 nnoremap <leader>t :term <CR>
 
-" Color scheme ===========================================
-"set background=dark
-"set t_Co=16
-"colorscheme solarized8_flat
-colorscheme peachpuff
+" Colorscheme ===========================
+set background=dark
+colorscheme gruvbox
 
 " File Specific Options =================================
 " Makefile
@@ -160,14 +159,19 @@ augroup text
     autocmd!
     autocmd FileType text set wrap
     autocmd FileType text set colorcolumn=0
-    "autocmd FileType text set spell
 augroup END
 " Markdown
 augroup markdown
     autocmd!
     autocmd FileType markdown set wrap
     autocmd FileType markdown set colorcolumn=0
-    autocmd FileType markdown set spell
+augroup END
+" html
+augroup html
+    autocmd!
+    autocmd FileType html set tabstop=2
+    autocmd FileType html set softtabstop=2
+    autocmd FileType html set shiftwidth=2
 augroup END
 " Python
 augroup python
@@ -191,3 +195,4 @@ fun! SetCodeBlockHighlighting()
     execute highlight_cmd
 endfu
 autocmd bufenter * :call SetCodeBlockHighlighting()
+
