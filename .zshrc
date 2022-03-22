@@ -3,8 +3,8 @@
 ######################
 
 # Set Prompt
-#PS1="%B%F{magenta}➜ %f"
-PS1="%B%F{cyan}[%f%b%F{yellow}%~%f%B%F{cyan}]%f%b%F{magenta}"$'\n'"➜ %f"
+PS1="%B%F{cyan}[%f%b%F{yellow}%1~%f%B%F{cyan}]%f%b%F{magenta}> %f"
+#PS1="%B%F{cyan}[%f%b%F{yellow}%~%f%B%F{cyan}]%f%b%F{magenta}"$'\n'"➜ %f"
 #PS1="%B%F{magenta}[%f%b%F{red}%n%f%F{cyan}@%f%F{green}%m%f%B%F{magenta}]%f%b %F{yellow}%2~%f"$'\n'"$ "
 
 # Enable autocomplete
@@ -13,8 +13,11 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
+# Conda autocomplete
+fpath+=/Users/taprati/conda-zsh-completion
+compinit conda
 
-# History settings 
+# History settings
 HISTSIZE=10000
 SAVEHIST=10000
 setopt HIST_IGNORE_ALL_DUPS
@@ -32,7 +35,6 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Vim Key bindings ==========================================
-# Enable vi mode
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -63,9 +65,11 @@ alias mv='mv -iv'
 alias cp='cp -iv'
 alias mkdir='mkdir -pv'
 
-# Conda alias
+# Convenient aliases
 alias ca='conda activate'
 alias bi='brew install'
+alias tree='tree -C'
+alias excel='open -a Microsoft\ Excel'
 
 # Program dependent aliases
 alias fzf='fzf --margin 20% --border rounded --reverse'
@@ -79,7 +83,7 @@ alias fzf='fzf --margin 20% --border rounded --reverse'
 [ -x "$(command -v htop)" ] && alias top='htop'
 
 # Functions
-bookmarks() { 
+bookmarks() {
     cd "$(cat ~/.bookmarks | fzf --margin 5% --border rounded --reverse | sed "s|~|$HOME|")"
 }
 zle -N bookmarks
