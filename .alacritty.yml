@@ -377,9 +377,9 @@ schemes:
 ###################
 #### SET THEME ####
 ###################
-colors: *GruvboxDark
-#colors: *SolarizedDark
+colors: *SolarizedDark
 #colors: *SolarizedLight
+#colors: *GruvboxDark
 #colors: *OneDark
 #colors: *CyberPunkNeon
 #colors: *everforest_dark
@@ -434,16 +434,16 @@ colors: *GruvboxDark
   # When set to `true`, selected text will be copied to the primary clipboard.
   #save_to_clipboard: false
 
-#cursor:
+cursor:
   # Cursor style
-  #style:
+  style:
     # Cursor shape
     #
     # Values for `shape`:
     #   - ▇ Block
     #   - _ Underline
     #   - | Beam
-    #shape: Block
+    shape: Block
 
     # Cursor blinking state
     #
@@ -452,7 +452,7 @@ colors: *GruvboxDark
     #   - Off: Disable blinking by default
     #   - On: Enable blinking by default
     #   - Always: Force the cursor to always blink
-    #blinking: Off
+    blinking: Off
 
   # Vi mode cursor style
   #
@@ -460,14 +460,14 @@ colors: *GruvboxDark
   # the style of the active value of the normal cursor.
   #
   # See `cursor.style` for available options.
-  #vi_mode_style: None
+  vi_mode_style: Beam
 
   # Cursor blinking interval in milliseconds.
   #blink_interval: 750
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
-  #unfocused_hollow: true
+  unfocused_hollow: true
 
   # Thickness of the cursor relative to the cell width as floating point number
   # from `0.0` to `1.0`.
